@@ -81,7 +81,7 @@ object EventFixture {
       |    password = "postgres"
       |}
       |job {
-      |  enable.distributed.checkpointing = true
+      |  enable.distributed.checkpointing = false
       |  statebackend {
       |    blob {
       |      storage {

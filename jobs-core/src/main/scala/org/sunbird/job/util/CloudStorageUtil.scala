@@ -54,7 +54,7 @@ class CloudStorageUtil(config: BaseJobConfig) extends Serializable {
   }
 
   def getURI(prefix: String, isDirectory: Option[Boolean]): String = {
-    getService.getUri(getContainerName, prefix, isDirectory)
+    getService.getUri(getContainerName, prefix)
   }
 
   def uploadDirectory(folderName: String, directory: File, slug: Option[Boolean] = Option(true)): Array[String] = {

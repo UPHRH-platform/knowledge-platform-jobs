@@ -1,7 +1,10 @@
 package org.sunbird.job.videostream.helpers
 
 
-import java.util.UUID
+import java.text.SimpleDateFormat
+import java.util.{Date, TimeZone, UUID}
+import com.google.cloud.video.transcoder.v1.Job
+import org.slf4j.LoggerFactory
 import scala.collection.immutable.HashMap
 import org.apache.commons.lang3.StringUtils
 import org.sunbird.job.util.{HTTPResponse, JSONUtil}

@@ -112,7 +112,7 @@ class VideoStreamService(implicit config: VideoStreamGeneratorConfig, httpUtil: 
 
       streamStage = Option(StreamingStage(jobRequest.request_id, jobRequest.client_key, null, stageName, "FAILED", "FAILED", jobRequest.iteration + 1, errorMsg));
     }
-    logger.info("result is "+ result)
+    logger.info("result is "+ response.result)
     updateJobRequestStage(streamStage.get);
   }
 
@@ -144,7 +144,7 @@ class VideoStreamService(implicit config: VideoStreamGeneratorConfig, httpUtil: 
       col._2 match {
         case value: List[Any] =>
           selectWhere.and(QueryBuilder.in(col._1, value.asJava))
-        case value: Map[String, AnyRef] =>
+        case value: Map[String, AnyRef] => 
           if (value("type") == "lte") {
             selectWhere.and(QueryBuilder.lte(col._1, value("value")))
           } else {

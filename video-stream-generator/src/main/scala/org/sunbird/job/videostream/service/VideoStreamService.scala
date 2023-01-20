@@ -102,7 +102,7 @@ class VideoStreamService(implicit config: VideoStreamGeneratorConfig, httpUtil: 
     val response:MediaResponse = mediaService.submitJob(mediaRequest)
     val stageName = "STREAMING_JOB_SUBMISSION"
     var streamStage:Option[StreamingStage] = None
-
+    logger.info("inside the submitStreamJob: " )
     if (response.responseCode.equals("OK")) {
       val jobId = response.result.getOrElse("job", Map()).asInstanceOf[Map[String, AnyRef]].getOrElse("id","").asInstanceOf[String];
       val jobStatus = response.result.getOrElse("job", Map()).asInstanceOf[Map[String, AnyRef]].getOrElse("status","").asInstanceOf[String];
@@ -112,7 +112,7 @@ class VideoStreamService(implicit config: VideoStreamGeneratorConfig, httpUtil: 
 
       streamStage = Option(StreamingStage(jobRequest.request_id, jobRequest.client_key, null, stageName, "FAILED", "FAILED", jobRequest.iteration + 1, errorMsg));
     }
-
+    logger.info("result is "+ result)
     updateJobRequestStage(streamStage.get);
   }
 

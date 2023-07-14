@@ -47,6 +47,7 @@ object FileUtils {
     val url = new URL(fileUrl)
     val httpConn = url.openConnection().asInstanceOf[HttpURLConnection]
     val disposition = httpConn.getHeaderField("Content-Disposition")
+    logger.info("file url :  "+url)
     httpConn.getContentType
     httpConn.getContentLength
     val fileName = if (StringUtils.isNotBlank(disposition)) {
@@ -57,8 +58,10 @@ object FileUtils {
         fileUrl.substring(fileUrl.lastIndexOf("/") + 1, fileUrl.length)
     } else fileUrl.substring(fileUrl.lastIndexOf("/") + 1, fileUrl.length)
     val saveFile = new File(basePath)
+    logger.info("basePath in downloadFile method" + basePath)
     if (!saveFile.exists) saveFile.mkdirs
     val saveFilePath = basePath + File.separator + fileName
+    logger.info("saveFilePath "+saveFilePath)
     val inputStream = httpConn.getInputStream
     val outputStream = new FileOutputStream(saveFilePath)
     IOUtils.copy(inputStream, outputStream)

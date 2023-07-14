@@ -121,6 +121,7 @@ trait ContentPublisher extends ObjectReader with ObjectValidator with ObjectEnri
   private def isValidUrl(url: String, mimeType: String, allowedExtensionsWord: util.List[String]): Boolean = {
     val destPath = s"""${File.separator}tmp${File.separator}validUrl"""
     //    val destPath = s"""$bundlePath${File.separator}${StringUtils.replace(id, ".img", "")}"""
+    logger.info(s"url ::: destPath ::: in isValidUrl $url method from contentPublisher : "  + destPath)
     var isValid = false
     try {
       val file: File = FileUtils.downloadFile(url, destPath)

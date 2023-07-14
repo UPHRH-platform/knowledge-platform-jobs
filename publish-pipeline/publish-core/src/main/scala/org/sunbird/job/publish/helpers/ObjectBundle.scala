@@ -125,6 +125,7 @@ trait ObjectBundle {
                   newFile
                 case _ =>
                   val url = k.asInstanceOf[String]
+                  logger.info(s"file url ::: destPath ::: Processing file: $url for : " + destPath)
                   // UnknownHostException | FileNotFoundException
                   try {
                     FileUtils.downloadFile(url, destPath)

@@ -60,6 +60,7 @@ class QRCodeImageGeneratorFunction(config: QRCodeImageGeneratorConfig,
             try {
               val fileName = dialcode("id").asInstanceOf[String]
               val downloadUrl = dialcode("location").asInstanceOf[String]
+              logger.info(s"downloadUrl ::: tempFilePath :::  $downloadUrl and : " + tempFilePath)
               val file: File = FileUtils.downloadFile(downloadUrl, tempFilePath)
               val newFile: File = new File(s"""$tempFilePath${File.separator}$fileName.${imageConfig.imageFormat}""")
               FileUtils.copyFile(file, newFile)
